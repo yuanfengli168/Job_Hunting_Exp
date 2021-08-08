@@ -1,0 +1,319 @@
+---
+title: 'IMT 573: Lab 1 - Introduction to R and RStudio Server'
+author: "Your name"
+date: "Date you are uploading"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+<!-- This syntax can be used to add comments that are ignored during knitting process. -->
+
+### Objectives
+
+In this demo we will get a first look at writing R code for data science. We will review basic R syntax and take a look at the different R data structures we will use throughout the course. We will learn how to find and access existing datasets, and even make our first visualization of data!
+
+This demonstration also give you a glimpse of writing reproducible data science reports using Rmarkdown. We will talk more about this next week!
+
+### A little background on R
+
+Everything in \textbf{R} is an object - data, functions, everything! When you type in commands what happens:
+
+- __R__ tries to interpret what you've asked it to do (evaluation)
+- If it understands what you've told it to do, no problem
+- If it does not understand, it will likely give you an error or warning message
+
+Some commands trigger **R** to print something to the screen, others don't.
+
+If you type in an incomplete command, \textbf{R} will usually respond by changing the command prompt to the $+$ character to demonstrate it is waiting for something more. A $>$ indicated the beginning of a line. You shouldn't have to consider this too much because you should always write your code in a *script* rather than the Console.
+
+<!-- \textcolor{red}{Script: a script is a sequence of instructions that is interpreted or carried out by a program.} -->
+
+### Getting started
+
+Welcome to RStudio! RStudio is an integrated development environment (IDE) for R. It comes with a lot of nifty functionality to make it easier for us to do data science! Take a tour of RStudio using the online learning center or just play around with it after class today.
+
+First, let's consider setting up our environment. In this report, we will be able to write text, as we have done already, but we will also be able to write code! Code should be contained in a *code chunk*. Code chunks are marked as follows: 
+
+```{r our first code chunk}
+# Hello R!
+# This is a code comment.
+# Code comments help you document your coding proces!
+
+#This is a code chunk named "our first code chunk", which is the name of the code chunk;
+# Including code chunk name is optional, but this practice will help you create well documented code
+```
+
+###  Introduction to basic R syntax
+
+Let's take a look at some basic R syntax. Remember everything in R is an object! We also want to follow the `tidyverse` style guide for writing code. Variable and function names should use only lowercase letters, numbers, and _.  
+
+```{r syntax examples}
+1 + 3		# evaluation
+
+a <- 3	# assignment. <- is the assignment symbol
+a				# evaluation
+
+a<-3		# spacing does not matter
+a    <-    3		# spacing does not matter
+
+sqrt(a)			# use the square root function
+b <- sqrt(a)		# use function and save result
+b
+
+# x				# evaluate something that is not there
+
+a == b			# is a equal to b?         
+a != b			# is a not equal to b?
+
+# list objects in the R environment
+# (same as viewing the "Workspace" pane in RStudio)
+ls()
+
+rm(a)			# remove a single object
+rm(list=ls())		# remove everything from the environment
+```
+
+### Getting help in R
+
+```{r getting help}
+# get help with R generally
+# (same as viewing the "Help" pane in RStudio)
+help.start()
+
+# More targeted help
+?sqrt			# get specific help for a function
+
+apropos("sq")		# regular expression match. What do you do when you can't really recall the exact function name
+```
+
+### Data Types in R
+There are numerous data types in R that store various kinds of data. The four main types of data most likely to be used are numeric, character (string), Date (time-based) and logical (TRUE/FALSE).
+
+```{r datatype}
+# Check the type of data contained in a variable with the class function. 
+
+
+# Numeric data type -- Testing whether a variable is numeric
+
+
+# Character data
+
+
+# Date type -- Dealing with dates and times can be difficult in any language, and to further complicate matters R has numerous different types of dates. 
+
+
+# Logical data type: True/False
+
+
+# Factor vectors: Ideal for representing categorical variables (More on that later)
+
+```
+
+### Vectors and matrices in R
+#### Vectors in R: A collection of elements all of the same data type
+```{r vector indices}
+# Creating vectors using c() function or the "combine" operator
+a <- c(1,3,5,7)	
+a
+
+# select the second element
+		
+
+# also works with strings. let's see how.
+b <- c("red","green","blue","purple")	
+b
+
+
+
+```
+
+```{r vector filtering}
+# all colors except blue
+
+
+#all numbers less than 5
+
+
+```
+
+```{r modifying vectors}
+#add a new element
+
+
+#change the first element
+
+
+# combine by applying recursively
+
+
+# mixing types---what happens?
+
+```
+
+
+```{r sequence and rep}
+# Sequences and replication
+
+#creating a vector using sequence. sequence from 1 to 5
+a <- seq(from=1,to=5,by=1)
+b <- 1:5					# a shortcut!
+
+#creating a vector using sequence. sequence from 1 to 10, steps of 2
+
+
+# replicate elements of a vector
+
+# Any, all, and which (with vectors)
+
+
+# How long is the vector?
+length(a)
+```
+
+
+### Element-wise operations on vectors
+
+```{r vector elementwise}
+# Most arithmetic operators are applied element-wise:
+a <- 1:5		# create a vector
+a + 1		# addition
+
+```
+
+### vectorized functions. Transforming vectors by applying functions
+```{r vector transformation}
+
+
+#vector of numbers
+nums <- c(3.98, 8.2, 10.5, 3.6, 5.5)
+round(nums, 1) # round to nearest whole number or number of decimal places, if specified
+```
+
+### From vectors (1D collection of data) to matrices (2D collection of data)
+
+```{r matrix}
+# create a matrix the "formal" way...
+
+```
+
+### Element-wise operations on matrices (same principles as vectors)
+```{r}
+
+```
+
+### Factor Variable
+Factors consist of a finite set of categories (primarily used for categorical variables).
+Factors also optimize for space. Instead of storing each of the character strings, example 'small', 'medium', it will store a number and R will remember the relationship between the label and the string. Example: 1 for 'small', 2 for 'medium', etc.
+Let's see with an example
+```{r factors}
+
+# A character vector of shirt sizes
+shirt_sizes <- c('small', 'medium', 'small', 'large', 'medium', 'medium')
+
+
+# YOUR TURN: 
+# Create a factor variable education that has four categories: "High School", "College", "Masters", "Doctorate"
+
+
+```
+
+### R functions
+```{r functions}
+# call the sqrt() function, passing it an argument of 25
+
+
+# call the print function, passing it "IMT 573" as an argument
+
+
+#printing using cat function
+cat("value = ", a)
+
+#min and max function taking multiple arguments
+
+
+#function to return upper case
+
+
+#Write a function of your name. Let's see how it works through an example
+#write a function to combine first and last name
+
+make_fullname <- function(firstname, lastname) {
+  # function body
+  fullname <- paste(firstname, lastname)
+  
+  #return the value
+  return(fullname)
+}
+
+#call the function
+some_name = make_fullname('John', 'Doe')
+
+```
+
+### R functions: YOUR TURN - TODO
+### Write a function to calculate area of a rectangle
+
+
+### Data frames - act like tables where data is organized into rows and columns 
+```{r create dataframe}
+# creating a dataframe by passing vectors to the `data.frame()` function
+
+# a vector of names
+name <- c("Alice", "Bob", "Chris", "Diya", "Emma")
+# A vector of heights
+heights <- c(5.5, 6, 5.3, 5.8, 5.9)
+weights <- c(100, 170, 150, 120, 155)
+
+#Combine the vectors into a data frame
+# Note the names of the variables become the names of the columns in the dataframe
+people <- data.frame(name, heights, weights)
+
+# to create row.names
+people2 <- data.frame(name, heights, weights, row.names = 1)
+
+# YOUR TURN
+# build an employee data frame of 5 employees with 3 columns: income, manager (T/F), empid 
+
+
+```
+
+```{r accessing dataframe}
+# elements by row and column name
+people2['Alice', 'heights']
+
+
+
+```
+
+
+### Read and Write data
+**Working Directory** When working with .csv files, the read.csv() function takes as an argument a path to a file.
+You need to make sure you have the correct path. To check your current working directory using the R function \textbf{getwd()}
+
+```{r readcsv}
+
+#read titanic.csv data. Download data from Canvas
+
+
+#check the type of data
+
+#check additional structure and type in the data
+
+
+# inspect the data - look at top and bottom
+
+
+```
+
+### Finding built-in data sets
+
+```{r}
+```
+
+### Elementary visualization
+```{r}
+```
+
+
+
